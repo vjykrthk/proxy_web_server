@@ -1,0 +1,132 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "description": "Karthik",
+    "version": "1.0.0",
+    "title": "ProxyServer",
+    "contact": {
+      "email": "vjykrthk@gmail.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "servers": [
+    {
+      "url": "/"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Employee Request",
+      "description": "Example API for requesting and return employee requests"
+    }
+  ],
+  "paths": {
+    "/v1/api/employees": {
+      "get": {
+          "tags": [
+            "Employee Request"
+          ],
+          "summary": "Returns employeeRequests",
+          "responses": {
+            "201": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/components/schemas/employeeRequests"
+              }
+            },
+            "400": {
+              "description": "Failed bad post request"
+            }
+          }
+      },
+      "post": {
+        "tags": [
+          "Employee Request"
+        ],
+        "summary": "Create a new employee request system",
+        "requestBody": {
+          "description": "Employee Request Post Object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/employeeRequestPostBody"
+              }
+            }
+          }
+        },
+        "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "$ref": "#/components/schemas/employeeRequests"
+              }
+            },
+            "400": {
+              "description": "Failed bad post request"
+            }
+          }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+       "employeeRequestPostBody": {
+        "type": "object",
+        "properties": {
+          "employee_name": {
+            "type": "string",
+            "format": "string"
+          },
+          "employee_salary": {
+            "type": "string",
+            "format": "number"
+          },
+          "employee_age": {
+            "type": "string",
+            "format": "number"
+          }
+        }
+      },
+      "employeeRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "string"
+          },
+          "employee_name": {
+            "type": "string",
+            "format": "string"
+          },
+          "employee_salary": {
+            "type": "string",
+            "format": "number"
+          },
+          "employee_age": {
+            "type": "string",
+            "format": "number"
+          },
+          "profile_image": {
+            "type": "string",
+            "format": "number"
+          }
+        }
+      },
+      "employeeRequests": {
+        "type": "object",
+        "properties": {
+           "employeeRequest": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/employeeRequest"
+            }
+          }
+        }
+      }
+    }
+  }
+}
