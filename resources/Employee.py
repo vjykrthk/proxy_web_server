@@ -11,15 +11,9 @@ class Employee(Resource):
         res = dummy_client.get_employees()
         employees = res.json()
         try:
-            return {
-                       'success': True,
-                       'data': employees
-                   }, 200
+            return {'success': True, 'data': employees}, 200
         except Exception as e:
-            return {
-                       'success': False,
-                       'error': str(res.content)
-                   }, 400
+            return {'success': False, 'error': str(res.content)}, 400
 
     def post(self):
         try:
