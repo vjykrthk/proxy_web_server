@@ -1,3 +1,6 @@
+import logging
+from logging.handlers import RotatingFileHandler
+
 from flask import Flask, redirect
 from flask_swagger_ui import get_swaggerui_blueprint
 
@@ -38,4 +41,8 @@ def set_swagger_end_point(app):
 
 if __name__ == "__main__":
     app = create_app("config")
+    handler = RotatingFileHandler('app.log', maxBytes=10000, backupCount=3)
+    logger = logging.getLogger(__name__)
+    logger.setLevel(logging.INFO)
+    logger.addHandler(handler)
     app.run(debug=True)
