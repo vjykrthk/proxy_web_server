@@ -4,7 +4,7 @@ from logging.handlers import RotatingFileHandler
 from flask import Flask, redirect
 from flask_swagger_ui import get_swaggerui_blueprint
 
-from app import api_bp
+from init import api_bp
 
 
 def create_app(config_filename):

@@ -1,3 +1,5 @@
+import traceback
+
 from flask import request
 from flask_restful import Resource
 
@@ -14,8 +16,8 @@ class Employee(Resource):
             employees = res.json()
             return {'success': True, 'data': employees}, 200
         except Exception as e:
-            app.logger.exception('Get employee error in get employee route {}'.format(str(res)))
-            return {'success': False, 'error': str(res)}, 400
+            app.logger.exception('Get employee error in get employee route traceback - {}'.format(traceback.format_exc()))
+            return {'success': False, 'error': traceback.format_exc()}, 400
 
     def post(self):
         try:
@@ -24,5 +26,5 @@ class Employee(Resource):
             employee = res.json()
             return {'success': True, 'data': employee}, 201
         except Exception as e:
-            app.logger.exception('Post employee error {}'.format(str(res)))
-            return {'success': False, 'error': str(res)}, 400
+            app.logger.exception('Post employee error {}'.format(traceback.format_exc()))
+            return {'success': False, 'error': traceback.format_exc()}, 400
